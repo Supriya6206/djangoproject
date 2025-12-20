@@ -26,6 +26,7 @@ urlpatterns = [
     path('form/', views.form, name='form'),
     path('delete/<int:student_id>', views.delete_data, name='delete'),
     path('recycle/', views.recycle, name='recycle'),
+    path('restore/<int:student_id>', views.restore, name='restore'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
