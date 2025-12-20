@@ -27,6 +27,7 @@ urlpatterns = [
     path('delete/<int:student_id>', views.delete_data, name='delete'),
     path('recycle/', views.recycle, name='recycle'),
     path('restore/<int:student_id>', views.restore, name='restore'),
+    path('edit/<int:id>', views.edit, name='edit'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

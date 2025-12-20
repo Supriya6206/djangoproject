@@ -43,4 +43,25 @@ def restore(request, student_id):
     data=Student.objects.get(id=student_id)
     data.isdelete=False
     data.save()
-    return redirect('home')
+    messages.success(request, f"Student '{data.name}' has been restored successfully")
+    return redirect('recycle')
+
+
+def edit(request,id):
+    data=Student.objects.get(id=id)
+    if request.method=="POST":
+        n=request.POST['name']
+        a=request.POST['age']
+        c=request.POST['course']
+        e=request.POST['email']
+        m=request.POST['message']
+        data=Student.objects.get(id=id)
+        data.name=n
+        data.age=a
+        data.course=c
+        data.email=e
+        data.message=m
+        data.save()
+        return redirect('home')
+    return render(request, 'edit.html', {'data': data})
+
