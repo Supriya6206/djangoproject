@@ -9,33 +9,47 @@
 </head>
 <body>
     <div class="form-container">
-        <form method="POST" enctype="multipart/form-data" class="course-form">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="POST" class="course-form">
             {% csrf_token %}
-            <h2>Add New Course</h2>
+            <h2>Student Registration</h2>
             
             <div class="form-group">
-                <label for="image">Course Image</label>
-                <input type="file" id="image" name="image" accept="image/*" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" maxlength="100" placeholder="Enter your name" required>
             </div>
 
             <div class="form-group">
-                <label for="title">Course Title</label>
-                <input type="text" id="title" name="title" maxlength="20" placeholder="Enter course title" required>
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" required>
             </div>
 
             <div class="form-group">
-                <label for="desc">Description</label>
-                <textarea id="desc" name="desc" rows="5" placeholder="Enter course description" required></textarea>
+                <label for="course">Course</label>
+                <input type="text" id="course" name="course" maxlength="100" placeholder="Enter course name" required>
             </div>
 
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" placeholder="Enter price" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" maxlength="100" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
             </div>
 
             <div class="form-buttons">
-                <button type="submit" class="btn-submit">Add Course</button>
+                <button type="submit" class="btn-submit">Submit</button>
                 <button type="reset" class="btn-reset">Clear</button>
+                <a href="{% url 'home' %}" class="btn-reset" style="text-decoration: none; text-align: center; line-height: 40px;">Back</a>
             </div>
         </form>
     </div>
